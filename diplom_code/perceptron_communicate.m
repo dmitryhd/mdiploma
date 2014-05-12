@@ -28,7 +28,7 @@ function perceptron_communicate()
             perc = train(perc, training_set(:,tr_index), training_answers(tr_index));
         end
     end
-    
+    for perc
     perceptron_output = zeros(1,length(training_answers));
     % check output
     for exam_index = 1:length(training_set)
@@ -38,6 +38,3 @@ function perceptron_communicate()
     perceptron_output
 end
 
-function res = get_random_input(number_of_inputs)
-    res = randi(2, number_of_inputs, 1) - 1;
-end
