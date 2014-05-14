@@ -25,5 +25,5 @@ function [ out ] = save_converge_vs_eta()
         out(:,i)=n_convs;
         i = i + 1;
     end
-    csvwrite_with_headers('data/converge_number.csv', out, headers);
+    csvwrite_with_headers('../data/converge_number.csv', out, headers);
 end

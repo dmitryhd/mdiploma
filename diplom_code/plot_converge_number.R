@@ -1,8 +1,9 @@
-converge_number <- read.csv("~/GitHub/mdiploma/diplom_code/data/converge_number.csv")
+converge_number <- read.csv("../data/converge_number.csv")
 #boxplot(converge_number)
 library(ggplot2)
 library(reshape2)
 
 converge_number.m <- melt(converge_number)
-p <- ggplot(converge_number.m, aes(x=variable,y=value)) + xlab("Ğ¡ĞºĞ¾Ñ€Ğ¾ÑÑ‚ÑŒ Ğ¾Ğ±ÑƒÑ‡ĞµĞ½Ğ¸Ñ") + ylab("") + geom_boxplot( ) + ylab("ĞšĞ¾Ğ»Ğ¸Ñ‡ĞµÑÑ‚Ğ²Ğ¾ Ğ¸Ñ‚ĞµÑ€Ğ°Ñ†Ğ¸Ğ¹ Ğ´Ğ»Ñ ÑÑ…Ğ¾Ğ´Ğ¸Ğ¼Ğ¾ÑÑ‚Ğ¸")
+p <- ggplot(converge_number.m, aes(x=variable,y=value)) + xlab("Êîåôôèöèåíò ñêîğîñòè îáó÷åíèÿ") + geom_boxplot( ) + ylab("Ñêîğîñòü ñõîäèìîñòè íåéğîñåòè")
+ggsave(filename="../plots/eta_vs_speed.png", plot=p)
 p
