@@ -1,0 +1,4 @@
+\beamer@endinputifotherversion {3.33pt}
+\beamer@sectionintoc {1}{What Can Happen at a Critical Point?}{2}{0}{1}
+\beamer@sectionintoc {2}{What Does $g'(c)>0$ Mean?}{20}{0}{2}
+\beamer@sectionintoc {3}{Further Work}{30}{0}{3}
