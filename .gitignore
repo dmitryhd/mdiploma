@@ -213,3 +213,10 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+*.pdf
+*.aux
+*.nav
+*.out
+*.toc
+*.gz
+text/example_pres/beamersample.pdf

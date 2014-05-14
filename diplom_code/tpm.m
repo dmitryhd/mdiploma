@@ -1,4 +1,4 @@
-function [dist_t_ans, n_converge] = perct(n_epoch, eta)
+function [dist_t_ans, n_converge] = tpm(n_epoch, eta)
     % Creates 2 perceptrons. and train them with one another.
     function res = get_perc_answer(w, x)
         
@@ -13,9 +13,9 @@ function [dist_t_ans, n_converge] = perct(n_epoch, eta)
     end
 
     function w_out = update_perc(w, x, other_ans, eta, L)
-        ans = get_perc_answer(w, x);
+        res = get_perc_answer(w, x);
         theta = 0;
-        if ans == other_ans
+        if res == other_ans
             theta = 1;
         end
         w_out = w + 0.1 * eta * other_ans * theta;
