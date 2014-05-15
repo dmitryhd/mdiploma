@@ -34,15 +34,16 @@
 \frametitle{Tree Parity Machines}
 \begin{itemize}
 \item Многоуровневая нейронная сети прямого распространения
-\item Входные нейроны принимают значения -1, +1
-\item Веса между скрытыми нейронами принимают значения [-L, +L]
-\item Значения скрытого нейрона ч= сигн w*x
-\item Значения выходного нейрона т = ...
+\item Входные нейроны принимают значения \(x_{i} \in \left\{ -1,+1 \right\}\)
+\item Веса принимают значения \(w_{i} \in \left\{-L,...,0,...,+L \right\}\)
+\item Значения скрытого нейрона \(\sigma_i=sgn(\sum_{j=1}^{N}w_{ij}x_{ij})\)
+\item Значения выходного нейрона \(\tau=\prod_{i=1}^{K}\sigma_i\)
 \end{itemize} 
 \begin{center}
-\includegraphics[width=5cm, height=5cm]{../../pics/tpm.jpg}
+\includegraphics[width=10cm, height=5cm]{../../pics/tpmv2.jpg}
 \end{center}
 \end{frame}
+
 
 \begin{frame}
 \frametitle{Tree Parity Machines - алгоритм}
@@ -59,55 +60,83 @@
 \item Выходы разные: переход к п.2.1
 \item Выходы одинаковые: применяем выбранное правило к весовым коэффициентам
 \end{itemize} 
+\end{frame}
 
+\begin{frame}
+\frametitle{Tree Parity Machines - алгоритм}
 Для обновления весовых коэффициентов могут использоваться следующие правила:
 
-Правило Хебба:
-\(w_i^+=w_i+\sigma_ix_i\Theta(\sigma_i\tau)\Theta(\tau^A\tau^B)\)
+
+\begin{itemize}
+
+\item Правило Хебба: \(w_i^+=w_i+\sigma_ix_i\Theta(\sigma_i\tau)\Theta(\tau^A\tau^B)\)
+
+\item Обратное правило Хебба: \(w_i^+=w_i-\sigma_ix_i\Theta(\sigma_i\tau)\Theta(\tau^A\tau^B)\)
+
+\item Случайное блуждание: \(w_i^+=w_i+x_i\Theta(\sigma_i\tau)\Theta(\tau^A\tau^B)\)
+
+\end{itemize}
 \end{frame}
+
+\subsection{Устойчивость к атакам}
+\begin{frame}
+\frametitle{Устойчивость к атакам}
+\begin{itemize}
+\item Перебор:  \((2L+1)^{KN}\) вариантов - неэффективно
+\item Синхронное обучение:  Длительная синхронизация (10-100 и более раз) - неэффективно
+\item Другие атаки: геометрическая, вероятностный анализ, генетические алгоритмы
+\end{itemize}
+\end{frame}
+
 
 \section{Результаты}
-\subsection{Зависимость скорости сходимости от eta}
-\begin{frame}
-\frametitle{Зависимость скорости сходимости от L}
-Посмотрим, какова скорость схождения сети в зависимости от константы обучения.
 
+\subsection{Зависимость скорости сходимости от N}
+\begin{frame}
+\frametitle{Зависимость скорости сходимости от N}
+Правило Хебба, L=3, K=3
 \begin{center}
-\includegraphics[width=5cm, height=5cm]{../../plots/eta_vs_speed.png}
+\includegraphics[width=10cm, height=7cm]{../../plots/l3pn3N_vs_tsync_100.png}
 
 \end{center}
 \end{frame}
 
-\subsection{Зависимость скорости сходимости от L}
 \begin{frame}
-\frametitle{Зависимость скорости сходимости от L}
-Посмотрим, какова скорость схождения сети в зависимости от константы обучения.
-
+\frametitle{Зависимость скорость схождения сети от L}
+Правило Хебба, N=100, K=3
 \begin{center}
-\includegraphics[width=5cm, height=5cm]{../../plots/eta_vs_speed.png}
+\includegraphics[width=10cm, height=7cm]{../../plots/n100pn3LvsTsync.png}
 
 \end{center}
 \end{frame}
 
-\subsection{Теоретическая формула для скорости обучения}
 \begin{frame}
-\frametitle{Теоретическая формула для скорости обучения}
-Посмотрим, какова скорость схождения сети в зависимости от константы обучения.
+\frametitle{От кол-ва связей на 1м слое}
+Правило Хебба, N=100, L=3
+\begin{center}
+\includegraphics[width=10cm, height=7cm]{../../plots/n100L3_pn_vs_Tsync.png}
+
+\end{center}
+\end{frame}
+
+
+\subsection{Оптимальное время синхронизации}
+\begin{frame}
+\frametitle{Оптимальное время синхронизации}
+Каковы оптимальные параметры системы (N, L, кол-во нейронов на 1м слое) с точки зрения времени синхронизации и ключа?
 
 \end{frame}
 
-\subsection{Теоретическая формула оптимального времени синхронизации}
-\begin{frame}
-\frametitle{Теоретическая формула оптимального времени синхронизации}
-Посмотрим, какова скорость схождения сети в зависимости от константы обучения.
 
-\end{frame}
-\end{document}
-
-\subsection{Эффективность по ср с другими средствами криптографии}
+\subsection{Эффективность по ср. с другими способами обмена ключами}
 \begin{frame}
-\frametitle{Теоретическая формула оптимального времени синхронизации}
-Посмотрим, какова скорость схождения сети в зависимости от константы обучения.
-* насколько длина ключа влияет ln pn
+\frametitle{Ср. с другими способами обмена ключами}
+\begin{itemize}
+
+\item Что будет если внедрить в TLS
+\item Насколько велика экономия вычислительных операций и передач по сети по сравнению с Диффи-Хеллманом, задачей дискретного логарифмирования
+\item Возможные применение
+\end{itemize}
+
 \end{frame}
 \end{document}
